@@ -11,7 +11,7 @@ export default function Header() {
 	const pathname = usePathname();
 	const isDashboard = pathname.startsWith("/dashboard");
 	return (
-		<header className="flex items-center justify-between px-4 sm:px-6">
+		<header className="flex items-center justify-between px-4 sm:p-6">
 			<Link
 				href="/dashboard"
 				className="font-medium uppercase tracking-widest"
