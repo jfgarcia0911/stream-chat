@@ -13,10 +13,12 @@ import {
 export default function Home() {
 	return (
 		<div className="ml-3">
+			{/* App header with navigation and auth */}
 			<Header />
 
 			<main className="flex flex-1 flex-col items-center px-4 py-16 sm:px-6 text-center gap-20 ">
 				<div className="max-w-4xl space-y-8 relative">
+					{/* Hero section with title and subtitle */}
 					<div className="space-y-6">
 						<h1 className="text-5xl sm:text-7xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 dark:from-blue-400 dark:via-purple-400 dark:to-indigo-400">
 							Connect instanly
@@ -32,6 +34,7 @@ export default function Home() {
 						</p>
 					</div>
 
+					{/* Show sign-in button if user is signed out */}
 					<div>
 						<SignedOut>
 							<SignInButton mode="modal">
@@ -45,7 +48,7 @@ export default function Home() {
 						</SignedOut>
 					</div>
 
-					{/* Social proof */}
+					{/* Social proof section with user stats */}
 					<div className="pt-8">
 						<p className="text-sm text-muted-foreground mb-4">
 							Trusted by thousands of users worldwide
@@ -74,7 +77,7 @@ export default function Home() {
 						</div>
 					</div>
 
-					{/* Enhanced features section */}
+					{/* Features section */}
 					<div className="w-full max-w-6xl">
 						{/* Section divider */}
 						<div className="w-full flex items-center justify-center mb-16">
@@ -84,7 +87,7 @@ export default function Home() {
 							</div>
 							<div className="flex-1 h-px bg-gradient-to-r from-transparent via-border to-transparent"></div>
 						</div>
-
+						{/* Features heading and description */}
 						<div className="text-center mb-16">
 							<h2 className="text-3xl sm:text-4l font-bold mb-6">
 								Everything you need to stay connected
@@ -95,7 +98,7 @@ export default function Home() {
 								friends or collaborating with teams.
 							</p>
 						</div>
-
+						{/* Feature cards grid */}
 						<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
 							<FeatureCard
 								icon={MessageCircle}
