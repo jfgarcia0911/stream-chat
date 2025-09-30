@@ -1,25 +1,22 @@
 import FeatureCard from "@/components/FeatureCard";
+import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { Button } from "@/components/ui/button";
-import { SignedOut, SignInButton } from "@clerk/nextjs";
-import {
-	MessageCircle,
-	Video,
-	Shield,
-	Zap,
-	Users,
-} from "lucide-react";
+import { SignedOut, SignInButton, SignUpButton } from "@clerk/nextjs";
+import { MessageCircle, Video, Shield, Zap, Users } from "lucide-react";
 export default function Home() {
 	return (
-		<div className="ml-3">
+		<div className="">
 			{/* App header with navigation and auth */}
 			<Header />
 
 			<main className="flex flex-1 flex-col items-center px-4 py-16 sm:px-6 text-center gap-20 ">
 				<div className="max-w-4xl space-y-8 relative">
+					{/* Background gradient */}
+					<div className="absolute inset-0 -z-10 bg-gradient-to-br from-blue-50 via-indigo-50 to-green-400 dark:from-blue-950/20 dark:via-indigo-950/20 dark:to-purple-950/20 rounded-3xl blur-3xl scale-150 opacity-60"></div>
 					{/* Hero section with title and subtitle */}
 					<div className="space-y-6">
-						<h1 className="text-5xl sm:text-7xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 dark:from-blue-400 dark:via-purple-400 dark:to-indigo-400">
+						<h1 className="text-5xl sm:text-7xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-indigo-600 to-green-600 dark:from-blue-400 dark:via-indigo-400 dark:to-green-400">
 							Connect instanly
 							<br />
 							<span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-pink-600 dark:from-purple-400 dark:to-pink-400">
@@ -126,8 +123,54 @@ export default function Home() {
 							/>
 						</div>
 					</div>
+
+					{/* Enhanced CTA section */}
+					<div className="w-full max-w-4xl">
+						<div className="rounded-2xl border bg-gradient-to-br from-primary/2 to-primary/10 p-12 items-center flex flex-col">
+							<h2 className="text-3xl sm:text-4xl font-bold mb-4">
+								Ready to transform your conversations?
+							</h2>
+							<p className="text-lg text-muted-foreground mb-8 max-w-2xl">
+								Join thousands of users who&apos;ve already
+								discovered a better way to communicate . Start
+								your journey with Snipe today - it&apos;s
+								completely free.
+							</p>
+
+							<div className="flex flex-col sm:flex-row justify-center items-center gap-4">
+								<SignedOut>
+									<SignUpButton mode="modal">
+										<Button
+											size="lg"
+											className="text-lg px-8 py-6 h-auto"
+										>
+											Get Started Free
+										</Button>
+									</SignUpButton>
+								</SignedOut>
+							</div>
+							<div className="flex justify-center flex-col sm:flex-row items-center gap-6 mt-8 text-sm text-muted-foreground">
+								<div className="flex items-center gap-2">
+									{/* Green dot indicator */}
+									<div className="w-2 h-2 rounded-full bg-green-500"></div>
+									No credit card required
+								</div>
+								<div className="flex items-center gap-2">
+									{/* Green dot indicator */}
+									<div className="w-2 h-2 rounded-full bg-green-500"></div>
+									Free forever plan
+								</div>
+								<div className="flex items-center gap-2">
+									{/* Green dot indicator */}
+									<div className="w-2 h-2 rounded-full bg-green-500"></div>
+									Setup in 30 seconds
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</main>
+			<Footer/>
 		</div>
 	);
 }
