@@ -8,8 +8,7 @@ import {
 	Shield,
 	Zap,
 	Users,
-	LucideIcon,
-} from "Lucide-react";
+} from "lucide-react";
 export default function Home() {
 	return (
 		<div className="ml-3">
