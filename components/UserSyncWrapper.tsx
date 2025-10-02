@@ -59,7 +59,7 @@ export default function UserSyncWrapper({children,}: {children: React.ReactNode;
         }
     }, [createOrUpdateUser, user])
 
-    const disconeectUser = useCallback(async () => {
+    const disconnectUser = useCallback(async () => {
         try {
             await streamClient.disconnectUser();
         }catch(err){
@@ -67,16 +67,25 @@ export default function UserSyncWrapper({children,}: {children: React.ReactNode;
         }
     }, [])
 
+    // Sync or disconnect Stream chat user on auth state change
     useEffect(() => {
         if(!isUserLoaded) return;
 
         if(user){
             syncUser()
         }else {
-            disconeectUser()
+            disconnectUser()
             setIsLoading(false)
         }
-    }, [user, isUserLoaded, syncUser, disconeectUser])
+
+        // Cleanup function
+        return () => {
+            if(user){
+                disconnectUser()
+            }
+        }
+    }, [user, isUserLoaded, syncUser, disconnectUser])
+
 
     // Loading state
     if(!isUserLoaded || isLoading){
@@ -93,5 +102,5 @@ export default function UserSyncWrapper({children,}: {children: React.ReactNode;
             </div>
         )
     }
-	return <div></div>;
+	return <div>{children}</div>;
 }

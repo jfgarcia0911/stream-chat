@@ -25,8 +25,9 @@ export  function LoadingSpinner({size = "md", message = "Loading...", className,
     <div className={cn("flex flex-col items-center justify-center", containerPadding[size] ,className)} >
       <div className={cn("border-muted-foreground/20 border-t-primary rounded-full animate-spin", sizeClasses[size])} role='status'
     aria-label='Loading'>
-        {showMessage && (<p className='mt-3 text-sm text-muted-foreground animate-pulse'>{message}</p>)}
       </div>
+        {showMessage && (<p className='mt-3 text-sm text-muted-foreground animate-pulse'>{message}</p>)}
+
     </div>
   )
 }
