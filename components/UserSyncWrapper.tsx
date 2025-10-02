@@ -3,9 +3,10 @@
 import { api } from "@/convex/_generated/api";
 import { useUser } from "@clerk/nextjs";
 import { useMutation } from "convex/react";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {LoadingSpinner} from './LoadingSpinner'
 import streamClient from "@/lib/stream";
+import { createToken } from "@/actions/createToken";
 export default function UserSyncWrapper({children,}: {children: React.ReactNode;}) {
 	const { user, isLoaded: isUserLoaded } = useUser();
     const [isLoading, setIsLoading] = useState(true)
@@ -57,6 +58,25 @@ export default function UserSyncWrapper({children,}: {children: React.ReactNode;
             setIsLoading(false)
         }
     }, [createOrUpdateUser, user])
+
+    const disconeectUser = useCallback(async () => {
+        try {
+            await streamClient.disconnectUser();
+        }catch(err){
+            console.error("Failed to disconnect user:", err)
+        }
+    }, [])
+
+    useEffect(() => {
+        if(!isUserLoaded) return;
+
+        if(user){
+            syncUser()
+        }else {
+            disconeectUser()
+            setIsLoading(false)
+        }
+    }, [user, isUserLoaded, syncUser, disconeectUser])
 
     // Loading state
     if(!isUserLoaded || isLoading){
